@@ -1,11 +1,14 @@
 package model.entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Seller implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 	private Integer id;
 	private String name;
@@ -102,7 +105,7 @@ public class Seller implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Vendedor -> id: " + id + ", nome: " + name + ", E-Mail: " + email + ", Data de Nascimento: " + birthDate + ", Salário: "
+		return "Vendedor -> id: " + id + ", nome: " + name + ", E-Mail: " + email + ", Data de Nascimento: " + sdf.format(birthDate) + ", Salário: "
 				+ String.format("%.2f", baseSalary) + ", Departmento: " + department;
 	}
 }
