@@ -1,6 +1,5 @@
 package application;
 
-import java.util.Date;
 import java.util.List;
 
 import model.dao.DaoFactory;
@@ -37,8 +36,14 @@ public class Program {
 		}
 
 		System.out.println("\n--- Teste 4: vendedor insert -----");
-		Seller newSeller = new Seller(null, "Greg Black", "greg@gmail.com", new Date(), 4000.00, department);
-		sellerDao.insert(newSeller);
-		System.out.println("Novo vendedor cadastrado! Id: " + newSeller.getId());
+		//Seller newSeller = new Seller(null, "Greg Black", "greg@gmail.com", new Date(), 4000.00, department);
+		//sellerDao.insert(newSeller);
+		//System.out.println("Novo vendedor cadastrado! Id: " + newSeller.getId());
+
+		System.out.println("\n--- Teste 5: vendedor update -----");
+		seller = sellerDao.findById(9);
+		seller.setName("Greg Purple");
+		sellerDao.update(seller);
+		System.out.println("Vendedor alterado!");
 	}
 }
