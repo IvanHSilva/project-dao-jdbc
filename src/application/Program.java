@@ -1,6 +1,8 @@
 package application;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 import model.dao.DaoFactory;
 import model.dao.SellerDao;
@@ -14,6 +16,7 @@ public class Program {
 		//Department obj = new Department(1, "Books");
 		//Seller seller = new Seller(1, "João", "joao@gmail.com", new Date(), 3000.00, obj);
 		
+		Scanner sc = new Scanner(System.in);
 		SellerDao sellerDao = DaoFactory.createSellerDao();
 		
 		System.out.println("--- Teste 1: vendedor findById -----");
@@ -36,14 +39,21 @@ public class Program {
 		}
 
 		System.out.println("\n--- Teste 4: vendedor insert -----");
-		//Seller newSeller = new Seller(null, "Greg Black", "greg@gmail.com", new Date(), 4000.00, department);
-		//sellerDao.insert(newSeller);
-		//System.out.println("Novo vendedor cadastrado! Id: " + newSeller.getId());
+		Seller newSeller = new Seller(null, "Greg Black", "greg@gmail.com", new Date(), 4000.00, department);
+		sellerDao.insert(newSeller);
+		System.out.println("Novo vendedor cadastrado! Id: " + newSeller.getId());
 
 		System.out.println("\n--- Teste 5: vendedor update -----");
-		seller = sellerDao.findById(9);
+		seller = sellerDao.findById(newSeller.getId());
 		seller.setName("Greg Purple");
 		sellerDao.update(seller);
 		System.out.println("Vendedor alterado!");
+
+		System.out.println("\n--- Teste 6: vendedor delete -----");
+		System.out.print("Digite o id do vendedor a ser excluído: ");
+		int id = sc.nextInt();
+		sellerDao.deleteById(id);
+		System.out.println("Vendedor excluído!");
+		sc.close();
 	}
 }
